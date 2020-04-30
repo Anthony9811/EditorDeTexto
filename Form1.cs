@@ -17,7 +17,7 @@ namespace EditorDeTexto
             InitializeComponent();
         }
 
-        private string primerLetraEnMinuscula(string textoSeleccionado)
+        private string convertirLaPrimerLetraEnMinuscula(string textoSeleccionado)
         {
             if(textoSeleccionado == null)
             {
@@ -30,7 +30,7 @@ namespace EditorDeTexto
             return textoSeleccionado.ToLower();
         }
 
-        private string primerLetraEnMayuscula(string textoSeleccionado)
+        private string convertirLaPrimerLetraEnMayuscula(string textoSeleccionado)
         {
             if (textoSeleccionado == null)
             {
@@ -79,7 +79,7 @@ namespace EditorDeTexto
             MessageBox.Show("Cantidad de letras en el párrafo: " + lasLetrasDelParrafo, "Letras en el párrafo");
         }
 
-        private void cantidadDeVecesQueSeRepiteUnaPalabra()
+        private void cuentaLaCantidadDeVecesQueSeRepiteUnaPalabra()
         {
             string[] arregloConElTextoCompleto = txtCuadroDeTexto.Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string buscaLaPalabraRepetida = txtPalabraRepetidaABuscar.Text;
@@ -95,7 +95,7 @@ namespace EditorDeTexto
             MessageBox.Show("La palabra " + txtPalabraRepetidaABuscar.Text + " se repite " + cuentaLasVecesQueSeRepiteLaPalabra + " veces");
         }
 
-        private void cantidadDeVecesQueSeRepiteUnaPalabraEnUnParrafo()
+        private void cuentaLaCantidadDeVecesQueSeRepiteUnaPalabraEnUnParrafo()
         {
             string[] arregloConElParrafoSeleccionado = txtCuadroDeTexto.SelectedText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string laPalabraRepetida = txtPalabraABuscarEnElParrafo.Text;
@@ -127,24 +127,43 @@ namespace EditorDeTexto
 
         private void letrasDelPárrafoAMinusculasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            txtCuadroDeTexto.SelectedText = txtCuadroDeTexto.SelectedText.ToLower();
+            if (txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }
+            else
+                txtCuadroDeTexto.SelectedText = txtCuadroDeTexto.SelectedText.ToLower();
         }
 
         private void letrasDelPárrafoAMayúsculasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            txtCuadroDeTexto.SelectedText = txtCuadroDeTexto.SelectedText.ToUpper();
+            if (txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }
+            else
+                txtCuadroDeTexto.SelectedText = txtCuadroDeTexto.SelectedText.ToUpper();
         }
 
         private void primerLetraEnMinusculaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            primerLetraEnMinuscula(txtCuadroDeTexto.SelectedText);
-            txtCuadroDeTexto.SelectedText = primerLetraEnMinuscula(txtCuadroDeTexto.SelectedText).ToString();
+            if (txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }
+            else
+                convertirLaPrimerLetraEnMinuscula(txtCuadroDeTexto.SelectedText);
+            txtCuadroDeTexto.SelectedText = convertirLaPrimerLetraEnMinuscula(txtCuadroDeTexto.SelectedText).ToString();
         }
 
         private void primerLetraEnMayúsculaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            primerLetraEnMayuscula(txtCuadroDeTexto.SelectedText);
-            txtCuadroDeTexto.SelectedText = primerLetraEnMayuscula(txtCuadroDeTexto.SelectedText).ToString();
+            if(txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }else
+            convertirLaPrimerLetraEnMayuscula(txtCuadroDeTexto.SelectedText);
+            txtCuadroDeTexto.SelectedText = convertirLaPrimerLetraEnMayuscula(txtCuadroDeTexto.SelectedText).ToString();
         }
 
         private void reemplazarPalabraEnEspecíficoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -185,12 +204,22 @@ namespace EditorDeTexto
 
         private void cantidadDeLetrasEnPárrafoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cuentaLasLetrasDeUnParrafo();
+            if (txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }
+            else
+                cuentaLasLetrasDeUnParrafo();
         }
 
         private void cantidadDePalabrasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cuentaLasPalabrasDeUnParrafo();
+            if (txtCuadroDeTexto.SelectionLength == 0)
+            {
+                MessageBox.Show("No se ha seleccionado ningún párrafo", "Advertencia");
+            }
+            else
+                cuentaLasPalabrasDeUnParrafo();
         }
 
         private void vecesQueSeRepiteUnaPalabraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,7 +240,7 @@ namespace EditorDeTexto
                 MessageBox.Show("Debe ingresar la palabra nueva con la que desea reemplazar la anterior", "Error");
             }
             else
-                cantidadDeVecesQueSeRepiteUnaPalabra();
+                cuentaLaCantidadDeVecesQueSeRepiteUnaPalabra();
             lblPalabraABuscar.Visible = false;
             txtPalabraRepetidaABuscar.Visible = false;
             btnBuscar.Visible = false;
@@ -235,7 +264,7 @@ namespace EditorDeTexto
                 MessageBox.Show("Debe ingresar la palabra nueva con la que desea reemplazar la anterior", "Error");
             }
             else
-                cantidadDeVecesQueSeRepiteUnaPalabraEnUnParrafo();
+                cuentaLaCantidadDeVecesQueSeRepiteUnaPalabraEnUnParrafo();
             lblPalabraABuscarEnParrafo.Visible = false;
             txtPalabraABuscarEnElParrafo.Visible = false;
             btnBuscarRepetidaEnParrafo.Visible = false;

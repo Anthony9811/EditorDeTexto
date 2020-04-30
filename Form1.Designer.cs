@@ -60,6 +60,7 @@
             // 
             // txtCuadroDeTexto
             // 
+            this.txtCuadroDeTexto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCuadroDeTexto.Location = new System.Drawing.Point(0, 27);
             this.txtCuadroDeTexto.Name = "txtCuadroDeTexto";
             this.txtCuadroDeTexto.Size = new System.Drawing.Size(800, 338);
